@@ -1,0 +1,14 @@
+name: build
+on: [push, workflow_dispatch]
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1
+      - run: .\build.bat
+        shell: cmd
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ShaderOverlay
+          path: ShaderOverlay.exe
